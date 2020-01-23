@@ -1,7 +1,10 @@
+import 'package:cloud_to_do_list/main_store.dart';
+import 'package:cloud_to_do_list/stores/root_store.dart';
 import 'package:flutter/material.dart';
-import 'screens/login.dart';
+import 'package:provider/provider.dart';
+import 'screens/login_screen.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Provider(create: (_) => RootStore(), child: MyApp()));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.
@@ -21,7 +24,9 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      home: Consumer<RootStore>(
+        builder: (_, rootStore, __) => LoginScreen(rootStore.accountStore),
+      ),
     );
   }
 }
