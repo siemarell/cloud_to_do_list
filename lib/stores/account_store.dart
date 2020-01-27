@@ -23,6 +23,7 @@ abstract class _AccountStore with Store {
     switch (loginType) {
       case LoginType.GOOGLE:
         user = await _googleLogin();
+        rootStore.tasksStore.syncTasks();
         break;
       case LoginType.FACEBOOK:
         {}
