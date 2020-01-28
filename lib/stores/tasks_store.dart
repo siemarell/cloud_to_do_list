@@ -26,6 +26,48 @@ final dataStr = '''[
 		"completed": false,
 		"dueTo": "2020-01-27",
 		"created": "2020-01-27T13:41:57.375Z"
+	},
+  {
+		"title": "task4",
+		"description": "foo",
+		"completed": false,
+		"dueTo": "2020-01-27",
+		"created": "2020-01-27T13:41:57.375Z"
+	},
+	{
+		"title": "task5",
+		"description": "foo2",
+		"completed": false,
+		"dueTo": "2020-01-27",
+		"created": "2020-01-27T13:41:57.375Z"
+	},
+	{
+		"title": "task6",
+		"description": "foo3",
+		"completed": false,
+		"dueTo": "2020-01-27",
+		"created": "2020-01-27T13:41:57.375Z"
+	},
+  {
+		"title": "task7",
+		"description": "foo",
+		"completed": false,
+		"dueTo": "2020-01-27",
+		"created": "2020-01-27T13:41:57.375Z"
+	},
+	{
+		"title": "task8",
+		"description": "foo2",
+		"completed": false,
+		"dueTo": "2020-01-27",
+		"created": "2020-01-27T13:41:57.375Z"
+	},
+	{
+		"title": "task9",
+		"description": "foo3",
+		"completed": false,
+		"dueTo": "2020-01-27",
+		"created": "2020-01-27T13:41:57.375Z"
 	}
 ]''';
 
@@ -41,12 +83,11 @@ abstract class _TasksStore with Store {
   @observable
   List<Task> tasks = [];
 
-
   @action
   syncTasks() {
     final user = this.rootStore.accountStore.user;
     if (user != null) {
-      final List<Map<String, dynamic>> parsedTasks = json.decode(dataStr);
+      final List<dynamic> parsedTasks = json.decode(dataStr);
       parsedTasks.forEach((t) => this.tasks.add(Task.fromJson(t)));
       // call api to get tasks
     }
