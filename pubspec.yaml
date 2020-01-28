@@ -21,6 +21,7 @@ dependencies:
   google_sign_in: ^4.1.1
   mobx: ^0.4.0
   provider: ^4.0.1
+  json_serializable: ^2.0.0
   flutter_mobx: ^0.3.4
   flutter:
     sdk: flutter

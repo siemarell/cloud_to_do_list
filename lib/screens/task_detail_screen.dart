@@ -1,4 +1,4 @@
-import 'package:cloud_to_do_list/stores/task.dart';
+import '../models/task.dart';
 import 'package:flutter/material.dart';
 
 class TaskDetailScreen extends StatelessWidget {

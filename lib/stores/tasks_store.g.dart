@@ -12,14 +12,14 @@ mixin _$TasksStore on _TasksStore, Store {
   final _$tasksAtom = Atom(name: '_TasksStore.tasks');
 
   @override
-  List<Task> get tasks {
+  dynamic get tasks {
     _$tasksAtom.context.enforceReadPolicy(_$tasksAtom);
     _$tasksAtom.reportObserved();
     return super.tasks;
   }
 
   @override
-  set tasks(List<Task> value) {
+  set tasks(dynamic value) {
     _$tasksAtom.context.conditionallyRunInAction(() {
       super.tasks = value;
       _$tasksAtom.reportChanged();

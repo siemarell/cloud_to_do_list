@@ -1,7 +1,5 @@
 import 'dart:convert';
-
-import 'package:cloud_to_do_list/stores/task.dart';
-
+import '../models/task.dart';
 import 'package:mobx/mobx.dart';
 import 'root_store.dart';
 
@@ -43,17 +41,13 @@ abstract class _TasksStore with Store {
   @observable
   List<Task> tasks = [];
 
+
   @action
   syncTasks() {
     final user = this.rootStore.accountStore.user;
     if (user != null) {
-      final List<dynamic> parsedTasks = json.decode(dataStr);
-      parsedTasks.forEach((t) => this.tasks.add(Task(
-          t['title'],
-          t['description'],
-          t['completed'],
-          DateTime.tryParse(t['dueTo']),
-          DateTime.tryParse(t['created']))));
+      final List<Map<String, dynamic>> parsedTasks = json.decode(dataStr);
+      parsedTasks.forEach((t) => this.tasks.add(Task.fromJson(t)));
       // call api to get tasks
     }
   }
