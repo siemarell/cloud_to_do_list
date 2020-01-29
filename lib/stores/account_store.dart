@@ -41,6 +41,11 @@ abstract class _AccountStore with Store {
     }
   }
 
+  @action 
+  logout(){
+    userFuture = ObservableFuture.value(null);
+  }
+  
   Future<FirebaseUser> _googleLogin() async {
     try {
       final GoogleSignInAccount googleSignInAccount =

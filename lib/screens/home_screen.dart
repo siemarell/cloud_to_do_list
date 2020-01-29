@@ -9,14 +9,21 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final rootStore = Provider.of<RootStore>(context);
-    
+
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.exit_to_app),
+            onPressed: rootStore.accountStore.logout,
+          )
+        ],
         title: Text('Home'),
       ),
       body: Observer(
         builder: (_) => ListView(
-            children: rootStore.tasksStore.tasks.map((t) => TaskCard(t)).toList()),
+            children:
+                rootStore.tasksStore.tasks.map((t) => TaskCard(t)).toList()),
       ),
     );
   }

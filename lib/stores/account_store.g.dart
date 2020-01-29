@@ -44,4 +44,14 @@ mixin _$AccountStore on _AccountStore, Store {
       _$_AccountStoreActionController.endAction(_$actionInfo);
     }
   }
+
+  @override
+  dynamic logout() {
+    final _$actionInfo = _$_AccountStoreActionController.startAction();
+    try {
+      return super.logout();
+    } finally {
+      _$_AccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
 }
