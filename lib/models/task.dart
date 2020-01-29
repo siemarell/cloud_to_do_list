@@ -1,7 +1,7 @@
 import 'package:json_annotation/json_annotation.dart';
 part 'task.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(nullable: false)
 class Task {
   String id;
   String title;

@@ -12,11 +12,8 @@ Task _$TaskFromJson(Map<String, dynamic> json) {
     title: json['title'] as String,
     description: json['description'] as String,
     completed: json['completed'] as bool,
-    dueTo:
-        json['dueTo'] == null ? null : DateTime.parse(json['dueTo'] as String),
-    created: json['created'] == null
-        ? null
-        : DateTime.parse(json['created'] as String),
+    dueTo: DateTime.parse(json['dueTo'] as String),
+    created: DateTime.parse(json['created'] as String),
   );
 }
 
@@ -25,6 +22,6 @@ Map<String, dynamic> _$TaskToJson(Task instance) => <String, dynamic>{
       'title': instance.title,
       'description': instance.description,
       'completed': instance.completed,
-      'dueTo': instance.dueTo?.toIso8601String(),
-      'created': instance.created?.toIso8601String(),
+      'dueTo': instance.dueTo.toIso8601String(),
+      'created': instance.created.toIso8601String(),
     };

@@ -81,7 +81,7 @@ abstract class _TasksStore with Store {
   }
 
   @observable
-  List<Task> tasks = [];
+  ObservableList<Task> tasks = ObservableList.of([]);
 
   @action
   syncTasks() {

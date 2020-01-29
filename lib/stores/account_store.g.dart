@@ -12,14 +12,14 @@ mixin _$AccountStore on _AccountStore, Store {
   final _$userAtom = Atom(name: '_AccountStore.user');
 
   @override
-  FirebaseUser get user {
+  ObservableFuture<FirebaseUser> get user {
     _$userAtom.context.enforceReadPolicy(_$userAtom);
     _$userAtom.reportObserved();
     return super.user;
   }
 
   @override
-  set user(FirebaseUser value) {
+  set user(ObservableFuture<FirebaseUser> value) {
     _$userAtom.context.conditionallyRunInAction(() {
       super.user = value;
       _$userAtom.reportChanged();

@@ -16,13 +16,13 @@ abstract class _AccountStore with Store {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @observable
-  FirebaseUser user;
+  ObservableFuture<FirebaseUser> user = ObservableFuture.value(null);
 
   @action
   login(LoginType loginType) async {
     switch (loginType) {
       case LoginType.GOOGLE:
-        user = await _googleLogin();
+        user = ObservableFuture(_googleLogin());
         rootStore.tasksStore.syncTasks();
         break;
       case LoginType.FACEBOOK:
