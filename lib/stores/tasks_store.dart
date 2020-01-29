@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../models/task.dart';
 import 'package:mobx/mobx.dart';
 import 'root_store.dart';
@@ -76,20 +78,14 @@ class TasksStore = _TasksStore with _$TasksStore;
 abstract class _TasksStore with Store {
   RootStore rootStore;
 
-  _TasksStore(this.rootStore) {
-    this.syncTasks();
-  }
+  _TasksStore(this.rootStore);
 
   @observable
-  ObservableList<Task> tasks = ObservableList.of([]);
+  ObservableList<Task> tasks = ObservableList();
 
   @action
-  syncTasks() {
-    final user = this.rootStore.accountStore.user;
-    if (user != null) {
-      final List<dynamic> parsedTasks = json.decode(dataStr);
-      parsedTasks.forEach((t) => this.tasks.add(Task.fromJson(t)));
-      // call api to get tasks
-    }
+  syncTasks(FirebaseUser user) {
+    final List<dynamic> parsedTasks = json.decode(dataStr);
+    parsedTasks.forEach((t) => this.tasks.add(Task.fromJson(t)));
   }
 }

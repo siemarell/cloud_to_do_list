@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: Observer(builder: (_) {
-        final userFuture = accountStore.user;
+        final userFuture = accountStore.userFuture;
         if (userFuture.status == FutureStatus.pending) {
           return CircularProgressIndicator();
         } else {

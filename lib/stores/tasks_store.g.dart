@@ -29,10 +29,10 @@ mixin _$TasksStore on _TasksStore, Store {
   final _$_TasksStoreActionController = ActionController(name: '_TasksStore');
 
   @override
-  dynamic syncTasks() {
+  dynamic syncTasks(FirebaseUser user) {
     final _$actionInfo = _$_TasksStoreActionController.startAction();
     try {
-      return super.syncTasks();
+      return super.syncTasks(user);
     } finally {
       _$_TasksStoreActionController.endAction(_$actionInfo);
     }

@@ -9,27 +9,39 @@ part of 'account_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$AccountStore on _AccountStore, Store {
-  final _$userAtom = Atom(name: '_AccountStore.user');
+  Computed<FirebaseUser> _$userComputed;
 
   @override
-  ObservableFuture<FirebaseUser> get user {
-    _$userAtom.context.enforceReadPolicy(_$userAtom);
-    _$userAtom.reportObserved();
-    return super.user;
+  FirebaseUser get user =>
+      (_$userComputed ??= Computed<FirebaseUser>(() => super.user)).value;
+
+  final _$userFutureAtom = Atom(name: '_AccountStore.userFuture');
+
+  @override
+  ObservableFuture<FirebaseUser> get userFuture {
+    _$userFutureAtom.context.enforceReadPolicy(_$userFutureAtom);
+    _$userFutureAtom.reportObserved();
+    return super.userFuture;
   }
 
   @override
-  set user(ObservableFuture<FirebaseUser> value) {
-    _$userAtom.context.conditionallyRunInAction(() {
-      super.user = value;
-      _$userAtom.reportChanged();
-    }, _$userAtom, name: '${_$userAtom.name}_set');
+  set userFuture(ObservableFuture<FirebaseUser> value) {
+    _$userFutureAtom.context.conditionallyRunInAction(() {
+      super.userFuture = value;
+      _$userFutureAtom.reportChanged();
+    }, _$userFutureAtom, name: '${_$userFutureAtom.name}_set');
   }
 
-  final _$loginAsyncAction = AsyncAction('login');
+  final _$_AccountStoreActionController =
+      ActionController(name: '_AccountStore');
 
   @override
-  Future login(LoginType loginType) {
-    return _$loginAsyncAction.run(() => super.login(loginType));
+  dynamic login(LoginType loginType) {
+    final _$actionInfo = _$_AccountStoreActionController.startAction();
+    try {
+      return super.login(loginType);
+    } finally {
+      _$_AccountStoreActionController.endAction(_$actionInfo);
+    }
   }
 }

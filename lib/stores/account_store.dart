@@ -9,21 +9,28 @@ class AccountStore = _AccountStore with _$AccountStore;
 
 abstract class _AccountStore with Store {
   RootStore rootStore;
+  List<Function> _disposers = [];
 
-  _AccountStore(this.rootStore);
+  _AccountStore(this.rootStore) {
+    _disposers.add(reaction((_) => this.userFuture.value, (FirebaseUser user) {
+      if (user != null) rootStore.tasksStore.syncTasks(user);
+    }));
+  }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   @observable
-  ObservableFuture<FirebaseUser> user = ObservableFuture.value(null);
+  ObservableFuture<FirebaseUser> userFuture = ObservableFuture.value(null);
+
+  @computed
+  FirebaseUser get user => userFuture.value;
 
   @action
-  login(LoginType loginType) async {
+  login(LoginType loginType) {
     switch (loginType) {
       case LoginType.GOOGLE:
-        user = ObservableFuture(_googleLogin());
-        rootStore.tasksStore.syncTasks();
+        userFuture = ObservableFuture(_googleLogin());
         break;
       case LoginType.FACEBOOK:
         {}
@@ -48,19 +55,23 @@ abstract class _AccountStore with Store {
 
       final AuthResult authResult =
           await _auth.signInWithCredential(credential);
-      final FirebaseUser user = authResult.user;
+      final FirebaseUser _user = authResult.user;
 
-      assert(!user.isAnonymous);
-      assert(await user.getIdToken() != null);
+      assert(!_user.isAnonymous);
+      assert(await _user.getIdToken() != null);
 
       final FirebaseUser currentUser = await _auth.currentUser();
-      assert(user.uid == currentUser.uid);
+      assert(_user.uid == currentUser.uid);
 
       return currentUser;
     } catch (e) {
       print(e);
       return null;
     }
+  }
+
+  _dispose() {
+    _disposers.forEach((d) => d());
   }
 }
 
