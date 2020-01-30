@@ -6,7 +6,7 @@ import 'package:mobx/mobx.dart';
 import 'package:provider/provider.dart';
 import 'screens/login_screen.dart';
 
-void main() => runApp(Provider(create: (_) => RootStore(), child: MyApp()));
+void main() => runApp(Provider.value(value: RootStore(), child: MyApp()));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

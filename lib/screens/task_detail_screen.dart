@@ -8,11 +8,17 @@ class TaskDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: <Widget>[
-      Text('${_task.title}'),
-      Text('${_task.description}'),
-      Text('${_task.dueTo}')
-    ],);
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('${_task.title}'),
+      ),
+      body: Column(
+        children: <Widget>[
+          Text('${_task.title}'),
+          Text('${_task.description}'),
+          Text('${_task.dueTo}')
+        ],
+      ),
+    );
   }
-
 }
