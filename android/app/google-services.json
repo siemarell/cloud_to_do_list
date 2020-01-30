@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1086163060818",
+    "firebase_url": "https://cloudtodolist-dad73.firebaseio.com",
+    "project_id": "cloudtodolist-dad73",
+    "storage_bucket": "cloudtodolist-dad73.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1086163060818:android:9157b09eebdb997c58b78b",
+        "android_client_info": {
+          "package_name": "com.example.cloud_to_do_list"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1086163060818-tjlov067tt2ija7g8isbjmea2iuonma3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cloud_to_do_list",
+            "certificate_hash": "1233d9947d7d3fcc6c31a2de582ee7b108177a56"
+          }
+        },
+        {
+          "client_id": "1086163060818-nljambjdp54i5d4sfotd3rmkhmfkj0vb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBlzQffQOQywsWluWt8pu0pzzZefvS425s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1086163060818-nljambjdp54i5d4sfotd3rmkhmfkj0vb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
