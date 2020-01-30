@@ -18,7 +18,10 @@ abstract class _AccountStore with Store {
   }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+      scopes: ['email', 'https://www.googleapis.com/auth/contacts.readonly'],
+      hostedDomain: "",
+      clientId: "");
 
   @observable
   ObservableFuture<FirebaseUser> userFuture = ObservableFuture.value(null);
@@ -41,11 +44,13 @@ abstract class _AccountStore with Store {
     }
   }
 
-  @action 
-  logout(){
-    userFuture = ObservableFuture.value(null);
+  @action
+  logout() {
+    _googleSignIn.signOut().then((_) {
+      userFuture = ObservableFuture(_auth.signOut());
+    });
   }
-  
+
   Future<FirebaseUser> _googleLogin() async {
     try {
       final GoogleSignInAccount googleSignInAccount =
