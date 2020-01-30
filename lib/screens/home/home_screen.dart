@@ -1,9 +1,9 @@
 import 'package:cloud_to_do_list/stores/root_store.dart';
-import 'package:cloud_to_do_list/stores/tasks_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import '../widgets/task_card.dart';
+import './widgets/task_card.dart';
+
 
 class HomeScreen extends StatelessWidget {
   @override

@@ -1,6 +1,5 @@
-import 'package:cloud_to_do_list/screens/home_screen.dart';
+import 'package:cloud_to_do_list/screens/home/index.dart';
 import 'package:cloud_to_do_list/stores/root_store.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:mobx/mobx.dart';
@@ -14,6 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final accountStore = Provider.of<RootStore>(context).accountStore;
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -31,11 +31,10 @@ class MyApp extends StatelessWidget {
       home: Observer(builder: (_) {
         final userFuture = accountStore.userFuture;
         if (userFuture.status == FutureStatus.pending) {
-          return CircularProgressIndicator();
+          return Center(
+              child: CircularProgressIndicator(backgroundColor: Colors.white));
         } else {
-          return userFuture.value == null
-              ? LoginScreen(accountStore)
-              : HomeScreen();
+          return userFuture.value == null ? LoginScreen() : HomeScreen();
         }
       }),
     );

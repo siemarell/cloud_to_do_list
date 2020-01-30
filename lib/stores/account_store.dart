@@ -75,9 +75,9 @@ abstract class _AccountStore with Store {
     }
   }
 
-  _dispose() {
-    _disposers.forEach((d) => d());
-  }
+  // _dispose() {
+  //   _disposers.forEach((d) => d());
+  // }
 }
 
 enum LoginType { GOOGLE, FACEBOOK, TWITTER }

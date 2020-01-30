@@ -85,7 +85,10 @@ abstract class _TasksStore with Store {
 
   @action
   syncTasks(FirebaseUser user) {
+    print('syncing');
     final List<dynamic> parsedTasks = json.decode(dataStr);
-    parsedTasks.forEach((t) => this.tasks.add(Task.fromJson(t)));
+    tasks = ObservableList.of(parsedTasks.map((j)=> Task.fromJson(j)));
+    // parsedTasks.forEach((t) => this.tasks.add(Task.fromJson(t)));
+
   }
 }
