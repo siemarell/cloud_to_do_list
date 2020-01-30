@@ -13,15 +13,25 @@ class TaskCard extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Observer(
-          builder: (_) => CheckboxListTile(
-            value: _task.completed,
-            onChanged: (v) => _task.completed = v,
-            title: Text(_task.title),
-            subtitle: Text(_task.description),
+          builder: (_) => Row(
+            children: <Widget>[
+              Checkbox(
+                value: _task.completed,
+                onChanged: (v) => _task.completed = v,
+              ),
+              Expanded(
+                // child: SizedBox(
+                  // height: 80.0,
+                  child: ListTile(
+                    title: Text(_task.title),
+                    subtitle: Text(_task.description),
+                  ),
+                // ),
+              ),
+            ],
           ),
         ),
       ),
     );
   }
 }
- 
